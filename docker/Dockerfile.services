@@ -1,0 +1,32 @@
+# --- Auth Service ---
+FROM node:20-slim AS auth
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY services/auth ./services/auth
+CMD ["node", "services/auth/server.ts"]
+
+# --- User Service ---
+FROM node:20-slim AS user
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY services/user ./services/user
+CMD ["node", "services/user/server.ts"]
+
+# --- AI Service ---
+FROM node:20-slim AS ai
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY services/ai ./services/ai
+CMD ["node", "services/ai/server.ts"]
+
+# --- Gateway (Full Stack) ---
+FROM node:20-slim AS gateway
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+CMD ["node", "services/gateway/server.ts"]

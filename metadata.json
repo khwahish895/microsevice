@@ -1,0 +1,6 @@
+{
+  "name": "AI Career Copilot - Microservices Demo",
+  "description": "A production-grade microservices architecture demonstration featuring Auth, User, and AI services with Docker and Kubernetes configurations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["microservices", "kubernetes", "docker", "ai"]
+}
